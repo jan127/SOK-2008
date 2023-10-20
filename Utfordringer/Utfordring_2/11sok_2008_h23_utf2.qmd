@@ -1,0 +1,268 @@
+---
+title: Utfordring 2
+author: Kandidat 11
+date: September 2023
+execute:
+  echo: false
+  warning: false
+format:
+  pdf:
+    code-fold: true
+jupyter: python3
+---
+
+```{python}
+#pakker
+from matplotlib import pyplot as plt
+import pandas as pd
+import seaborn as sns
+from PIL import Image
+from IPython.display import display
+```
+
+# Oppgave 2.1
+
+##### Del 1:
+
+For å kunne diskutere påstandene om at "Minstelønn fører til økt fattigdom" og "Minstelønn fører til mindre fattigdom", må man se på hva som skjer på arbeidsmarkedet ved innføring av minstelønn.
+
+Bedriftene ønsker å profittmaksimere, altså max $\pi = F(L) - w * L$. $\pi$ er profitten, $F(L)$ er produktfunksjonen, $w$ er timeslønnen og $L$ er antall ansatte. Her er bedriften pristagere, da prisen på produktet er bestemt av markedet. For profittmaks gjelder følgende vilkår $\frac{\Delta \pi}{\Delta L} = 0$, altså at $p * \frac{\Delta F(L)}{\Delta L} = w$. Dette vil si at bedriftene etterspør arbeidskraft frem til $MRP = w$. $MRP$ står for marginal revenue product, altså inntekten bedriften mottar ved å ansette en person til, og $w$ står for lønnen de ansatte mottar fra bedriften.
+
+Tilbudet av arbeidskraft forteller oss om hvor mange som ønsker å jobbe til en gitt lønn. Som regel heller denne kurven oppover mot høyre, da flere er villig til å jobbe til høyere lønninger.
+
+Figuren nedenfor viser hva som skjer på ett "perfekt" marked ved innføring av minstelønn.
+
+```{python}
+#bilde lokalikasjon
+image_path = 'perf_ml.jpg'
+
+#åpne bilde
+image = Image.open(image_path)
+
+#size
+new_size = (400, 400)
+
+#endre strl
+resized_image = image.resize(new_size)
+
+#display
+display(resized_image)
+```
+
+Før innføringen av minstelønnen tilpasset markedet seg ved $L^*$ ansatte og lønn $w^*$. Etter innføringen av minstelønn $\overline{w}$, kan man se at lønnen har økt fra $w^*$ og at antall ansatte har blitt redusert fra $L^*$ til $L_1$. I tillegg har man fått ett effektivitetstap (dødvektstap). Kort fortalt har lønnen til de gjenverende økt, og antall ansatte blitt redusert. Dette kan medføre økt ulikhet, altså flere med mer ressurser og flere med mindre ressurser, noe som kan medføre økt fattigdom på sikt.
+
+Ser man på monopsoni bedrifter derimot kan noe annet observeres ved innføring av minstelønn. Monopsoni i arbeidsmarkedet vil si at det er bare en eller få arbeidsgivere som dominerer et arbeidsmarked. Dette vil si at arbeidstakere har begrenset muligheter ved valg av arbeidssted og arbeidsgivere har betydelig markedsmakt når det kommer til lønn.
+
+Monopsoni bedriftenes profittfunksjon er litt annerledes enn ved fullkommen konkurranse. Denne er gitt ved følgene $\pi = p * F(L) - w(L) * L$. Her ser man at forskjellen fra fullkommen konkurranse er at lønnen $w(L)$ er en funksjon av arbeidstimer/arbeidstagere $L$, og dette grunnet at monopsoni bedriften møter hele tilbudet på arbeidskraft. Monopsoni bredriften profittmaksimerer på samme måte som ved fullkommen konkurranse, altså ved $\frac{\Delta \pi}{\Delta L} = 0$. Dette gir oss $p * \frac{\Delta F(L)}{\Delta L} - (w + \frac{\Delta w(L)}{\Delta L}) = 0 \Rightarrow MRP = MLC$, hvor $MRP =  p * \frac{\Delta F(L)}{\Delta L}$ og $MLC = w + \frac{\Delta w(L)}{\Delta L}$. $MLC$ står for marginal labour cost, altså kostnaden ved å ansette en person til. 
+
+Figuren nedenfor viser hva som skjer ved innføring av minstelønn ved monopsoni.
+
+```{python}
+#bilde lokalikasjon
+image_path2 = 'monopsoni_ml.jpg'
+
+#åpne bilde
+image2 = Image.open(image_path2)
+
+#endre strl
+resized_image2 = image2.resize(new_size)
+
+#display
+display(resized_image2)
+```
+
+I figuren ser man etterspørselen etter arbeidskraft $L (Demand)$, tilbudet av arbeidskraft $L (Supply)$ og marginalkostnaden for å ansette en person til $MLC$. $MLC$ har høyere helning enn $L (Supply)$ grunnet at lønnen må økes for alle eksisterende ansatte ved ansettelse av en person til. I tillegg har arbeidsmarkeder ved monopsoni bedrifter ett dødvektstap, da de ansetter mindre enn samfunnsøkonomisk optimalt ($L^*$, $w^*$) grunnet at monopsoni bedriften må øke lønnen til alle de eksisterende ansatte ved økt bruk av arbeidskraft $L$. Monopsoni bedriften velger å ansette $L_M$ personer til lønn $w_M$, da å ansette flere vil medføre at $MLC > MRP$, altså at kostnaden ved å ansette en til er høyere enn inntekten. Ved innføring av minstelønn $\overline{w}$ kan man se at lønnen øker fra $w_M$ til $\overline{w}$. Da dette medfører at $MLC = \overline{w}$, velger bedriften å ansette frem til $\overline{w}$ krysser tilbudskurven av arbeidskraft $L (Supply)$. Dette medfører en økning i antall ansatte fra $L_M$ til $L_1$. I tillegg blir dødvektstapet redusert. 
+
+Dersom minstelønnen $\overline{w}$ ble satt over $w_c$ ville dette medført økt dødvektstap og reduksjon i antall ansatte, og man ville fått samme effekter som ved fullkommen konkurranse. En minstelønn mellom $w^*$ og $w_c$ ville medført effekter i tilsvarende retning som illustrert i figuren ovenfor, altså økning i lønn $w$  og antall sysselsatte $L$. En minstelønn under $w_M$ ville ikke hatt noen effekt da bedriften ville tilpasset seg ved $L_M$ ansatte til lønn $w_M$.
+
+Dersom minstelønnen $\overline{w}$ blir satt mellom $w_M$ og $w_c$, vil en minstelønn medføre en økning i lønn $w$ og en økning i antall sysselsatte $L$. Dette kan bidra til å redusere ulikheten, da flere får høyere lønn og flere får arbeid, som igjen bidrar til å redusere fattigdom og ulikheten.
+
+Økonomisk teori gir ingen klarhet i hva en minstelønn vil medføre. I oppgaven så man på ett marked med fullkommen konkurranse, hvor en minstelønn medførte mindre ansatte og høyere lønninger til de gjenverende. I monopsoni bedriften så man derimot at en minstelønn kunne medføre økt sysselsetning og økte lønninger. Disse utfallene har ulikt utfall på fattigdom, da den ene medfører økt ulikhet, som igjen kan medføre fattigdom. Det andre utfallet medfører økte lønninger og flere i arbeid, som reduserer ulikheten, som igjen motbygger fattigdom. 
+
+##### Del 2:
+
+Figuren nedenfor viser sammenheng mellom sysselsetting og minstelønn i 2021 i europeiske land. På x-aksen har man sysselsetting i prosent for personer i alderen 20-64 år og på y-aksen finner man minstelønn som prosent av gjennomsnittslønn i landet. Dataene er hentet fra datasettene earn_mw_avgr2 og lfsi_emp_a i fra EuroStat. 
+
+```{python}
+#laster inn minimum wages data. Data som prosent av gjennomsnittlig inntekt.
+mw = pd.read_csv("https://raw.githubusercontent.com/jan127/SOK-2008/main/Utfordringer/Utfordring_2/estat_earn_mw_avgr2_filtered_en.csv")
+mw["mw"]=mw["OBS_VALUE"]
+mw = mw[["geo", "mw"]]
+
+#laster inn sysselsettingsdata. prosentvis
+emp = pd.read_csv("https://raw.githubusercontent.com/jan127/SOK-2008/main/Utfordringer/Utfordring_2/estat_lfsi_emp_a_filtered_en.csv")
+emp["emp"] = emp["OBS_VALUE"]
+emp = emp[["geo","emp"]]
+ 
+#merging datasets
+emp_mw = pd.merge(mw, emp, on='geo', how='inner') 
+correlation = emp_mw['emp'].corr(emp_mw['mw'])
+
+#plotstyle
+sns.set_style("whitegrid")
+
+#color for polot
+unique_colors = sns.color_palette("Paired", n_colors=len(emp_mw["geo"].unique()))  # Generate unique colors
+color_mapping = dict(zip(emp_mw["geo"].unique(), unique_colors))  # Map 'geo' values to colors
+
+#adding points and text to the points
+for i, row in emp_mw.iterrows():
+    plt.scatter(row['emp'], row['mw'], color=color_mapping[row['geo']])
+    plt.text(row['emp'], row['mw'], row['geo'], fontsize=10, ha='left', va='bottom')
+
+#regresjon
+sns.regplot(x="emp", y="mw", data=emp_mw, scatter=False, color='black', label='Regression Line', ci=None)
+
+#x and y lab
+plt.xlabel("Employment")
+plt.ylabel("Minimum wage")
+
+#show plot
+plt.show()
+
+print("Korrelasjonen mellom variablene er som følger: " + str(round(correlation, 2)) + " ,som vil si at det er en svak korrelasjon")
+```
+
+På figuren kan man observere en slak negativ korrelasjon mellom minstelønn og sysselsetting, som vil si at jo lavere minstelønn (i prosent av gjennomsnittslønn), desto flere i arbeid. Figuren kan gi støtte til påstanden "Minstelønninger fører til økt fattigdom."
+
+Men korrelasjonen er -0,38, som vil si at den er svak. I figuren kan man se flere land som avviker en del fra korrelasjonslinjen vår, og da man vet denne korrelasjonen er svak, skal ikke konkludere denne som en fasit. I midlertid kan en heller undersøke om det er andre faktorer som kan bidra til at korrelasjonslinjen vår blir slik. I tillegg ser man bare på ett år, og ikke hvilke effekter man har over tid. Om man ønsker å bedre indentifisere effekten av en minstelønn, kan en benytte en metode som heter differences in differences, eller på norsk endring i forskjeller.
+
+Denne metoden ser slik ut:
+
+```{python}
+#bilde lokalikasjon
+image_path3 = 'did.jpg'
+
+#åpne bilde
+image3 = Image.open(image_path3)
+
+#size
+new_size2 = (600, 450)
+
+#endre strl
+resized_image3 = image3.resize(new_size2)
+
+#display
+display(resized_image3)
+```
+
+Figuren viser to grupper, gruppe A og B. For å kunne se hvilke forskjeller en endring i minstelønn kan utgjøre på arbeidsledigheten, gjør man en måling før innføringen. Deretter økes minstelønnen i en av gruppene, i eksempelet ovenfor økes denne i gruppe B. Etter en periode ser man på forskjeller i gruppene. Alt annet en minstelønnen er likt for begge gruppene, og dermed er effekten bare som følge av økningen i minstelønn for gruppe B. For gruppe B fortsatte stigningen i arbeidsledighet. For gruppe A derimot, kunne man se at stigningen i arbeidsledigheten avtok, noe man kunne antatt ville skjedd i gruppe B også dersom ikke minstelønnen ble økt. I eksempelet ovenfor ville en minstelønn medført høyere arbeidsledighet enn dersom man ikke inførte den. 
+
+Differences in differences-metoden er en måte å kunne evaluere tiltak ved å teste denne for en gruppe før tiltaket blir innført. Man sjekker opp mot en kontrollgruppe hvor tiltaket ikke ble innført, og kan dermed kunne evaluere effektene av tiltaket.
+
+# Oppgave 2.2
+
+##### Del 1:
+
+For å kunne gi intuisjon til påstanden "Sterke fagforeninger reduserer velferden", må man se på et arbeidsmarked hvor fagforeningene har markedsmakt, altså at fagforeningene kan bestemme lønnen. For å kunne gjøre den økonomiske analysen, må man først gjøre noen antakelser. Disse er at alle fagforeningens medlemmer har lik reservasjonslønn $w^r$, som vil si den minste lønnen individet er villig å jobbe for. Videre antar man at fagforeningen kun får nytte av antall medlemmer i jobb $L$ og overskudd til medlemmene $(w-w^r)$, som vil si lønnen medlemme mottar $w$ minus reservasjonslønnen $w^r$. Dette vil si at fagforeningene nyttefunksjon er $U^f(L, (w-w^r))$.
+
+Figuren nedenfor viser hva som skjer dersom fagforeningen har markedsmakt, og igjen - bestemmer lønnen.
+
+```{python}
+#bilde lokalikasjon
+image_path4 = 'fagforeninger_monopol_dv.jpg'
+
+#åpne bilde
+image4 = Image.open(image_path4)
+
+#endre strl
+resized_image4 = image4.resize(new_size)
+
+#display
+display(resized_image4)
+```
+
+I figuren ser man bedriftenes etterspørsel etter arbeidskraft til en gitt lønn $L^{Demand}$ og ulike nivåer av nytte eller tilfredshet $U^f$ for fagforeningene. Lengre vekk fra aksene $\rightarrow$ økt nytte til fagforeningenes medlemmer. Uten fagforeningenes påvirkning i markedet ville markedet funnet likevekt ved $L^{fk}$ antall ansatte til lønn $w^{fk}$, da dette representerer hvor tilbudet og etterspørselen av arbeidskraft møtes. Lønnen i dette tilfellet er lik arbeidstakernes reservasjonslønn $w^r$, noe man antar er lik for alle fagforeningens medlemmer.
+
+Dersom fagforeningene har monopol og kan bestemme lønnen, vil de maksimere nytten til sine medlemmer. Ved fullkommen konkurranse oppnår fagforeningen nytte $U^f_0$ nytte. Fagforeningen maksimerer derimot sin nytte når $U^f_1$ tangerer med etterspørselskurven, og vil derfor kreve lønn $w^m$. Bedriften bestemmer fortsatt hvor mange de ønsker å ansette, og dermed vil antallet med jobb bli redusert fra $L^{fk}$ til $L^m$, da bedriften bare etterspør $L^m$ antall ansatte til lønnen $w^m$. Dermed kan man se at lønnen til de som fortsatt har jobb øker fra $w^{fk}$ til $w^m$, og antall ansatte blir redusert fra $L^{fk}$ til $L^m$. Dette skaper et dødvektstap, som vil si velferd samfunnet går glipp av, på grunn av ineffektivt bruk av ressurser. Dermed kan man si at sterke fagforeninger kan bidra til å redusere den totale velferden, da disse skaper et dødvektstap - altså velferd samfunnet går glipp av.
+
+##### Del 2:
+
+Figuren nedenfor viser hvordan forhandlinger mellom fagforeningene og arbeidsgivere kan foregå. Igjen - fagforeningene får nytte av lønn til sine medlemmer $w$ og antall medlemmer i arbeid $L$, og nytten representeres ved $U^f$. Lengre ut fra aksene $\rightarrow$ høyere nytte. (grunnet enten økt lønn eller antall medlemmer sysselsatt eller begge). IP-kurvene i figuren er såkalte iso-profitt kurver. Disse forteller oss hvilke kombinasjoner av lønn til de ansatte $w$ og antall ansatte $L$ som gir lik profitt. I motsetning til fagforeningens nytte, vil høyere profitt være nærmere x-aksen. Dette vil si jo lengre ned mot x-aksen en iso-profitt kurve ligger, desto høyere profitt oppnår bedriften.
+
+```{python}
+#bilde lokalikasjon
+image_path5 = 'forhandlinger.jpg'
+
+#åpne bilde
+image5 = Image.open(image_path5)
+
+#endre strl
+resized_image5 = image5.resize(new_size2)
+
+#display
+display(resized_image5)
+```
+
+Dersom forhandlingene begynner i punkt $A$, vil det røde skraverte området både øke profitten til bedriften, samt øke fagforeningens nytte. Fagforeningen får nytte mellom $U^f_0$ og $U^f_1$, noe som tilsier en økning i tilfredshet for medlemmene til fagforeningen. Flere av fagforeningens medlemmer får jobb, men må godta en litt lavere lønn en utgangspunktet. På andre siden oppnår bedriften en profitt mellom $IP_0$ og $IP_1$, som tilsier en økning i profitt. Bedriften kan ansette flere hvis lønnen går ned, og dermed øker sin profitt.
+
+Ser man på figuren nedenfor, kan man se sammenhengen mellom organisasjonsgrad i landet og arbeidsledighet for innenlandsfødte og utenlandsfødte i 2018 for ulike OECD land. Dataene er hentet fra OECD.
+
+```{python}
+#laster inn tud og mig dataset fra oecd. dataene er lastet ned gjennom oecd pakken i r, og deretter lastet opp på github for å kunne utføre grafisk fremstilling i python.
+og = pd.read_csv("https://raw.githubusercontent.com/jan127/SOK-2008/main/Utfordringer/Utfordring_2/organisasjonsgrad_oecd.csv")
+al = pd.read_csv("https://raw.githubusercontent.com/jan127/SOK-2008/main/Utfordringer/Utfordring_2/arbeidsledighet_oecd.csv")
+
+#DATA MANIPOULATION OG
+og = og[og["Time"] == 2018] #velger bare data fra 2018
+og["COUNTRY"] = og["LOCATION"] #endrer navn på location kolonne for å matche andre datasett
+og["OG"] = og["ObsValue"] #endrer navn på ObsValue kolonne
+og = og[["COUNTRY", "OG"]] #velger bare land og verdi kolonne da de andre ikke er relevant.
+
+#DATA MANIOULATION AL
+al = al[al["Time"] == 2018] #bare data fra 2018 
+al = al[al["GENDER"] == "TOT"] #velger bare data som ser på totalt, og ikke utifra hvilket kjønn.
+al = al[al["RATE"] == "U_RATE"] #Bare arbeidsledighetstall
+al["AL"] = al["ObsValue"] #Endrer navn på kolonne
+al = al[["COUNTRY", "BIRTH", "AL"]] #velger kun ønskede kolonner
+
+#SLÅR SAMMEN DATATSETT
+og_al = pd.merge(al, og, on='COUNTRY', how='inner')
+og_al_nb = og_al[og_al["BIRTH"] == "NB"]
+og_al_fb = og_al[og_al["BIRTH"] == "FB"]
+```
+
+```{python}
+fig, axs = plt.subplots(1, 2, figsize=(12, 4), sharey=True)
+
+#første plot
+for i, row in og_al_nb.iterrows():
+    axs[0].scatter(row["OG"], row["AL"], label=row["COUNTRY"])
+    axs[0].text(row["OG"] + 0.005, row["AL"], row["COUNTRY"].lower(), fontsize=8)
+
+#regresjonslinje
+sns.regplot(x=og_al_nb["OG"], y=og_al_nb["AL"], ax=axs[0], scatter=False, color='black', ci=None)
+
+axs[0].set_ylabel("Arbeidsledighet (%)")
+axs[0].set_xlabel('Organisasjonsgrad (%)')
+axs[0].set_title("""OECD-LAND - Sammenheng mellom 
+organisasjonsgrad og arbeidsledighet for innenlandsfødte""")
+
+#andre plot
+for i, row in og_al_fb.iterrows():
+    axs[1].scatter(row["OG"], row["AL"], label=row["COUNTRY"])
+    axs[1].text(row["OG"] + 0.005, row["AL"], row["COUNTRY"].lower(), fontsize=8)
+
+#regresjonslinje
+sns.regplot(x=og_al_fb["OG"], y=og_al_fb["AL"], ax=axs[1], scatter=False, color='black', ci=None)
+
+axs[1].set_ylabel("Arbeidsledighet (%)")
+axs[1].set_xlabel('Organisasjonsgrad (%)')
+axs[1].set_title("""OECD-LAND - Sammenheng mellom 
+organisasjonsgrad og arbeidsledighet for utenlandsfødte""")
+
+#endrer mellomrom mellom plottene
+plt.tight_layout()
+
+#showplot
+plt.show()
+```
+
+Figuren på venstre side viser sammnenhengen mellom organiasjonsgrad for landet og arbeidsledighet for innenlandsfødte, og figuren på høyre side viser sammenheng mellom organisasjonsgrad for landet og arbeidsledighet for utenlandsfødte. På figuren til venstre, som viser arbeidsledighet for innenlandsfødte, kan man se en negativ korrelasjon mellom organisasjonsgrad og arbeidsledighet. Dette vil si at dersom organisasjonsgraden øker, vil generelt sett arbeidsledigheten bli lavere. På figuren til høyre derimot, som viser arbeidsledighet for utenlandsfødte, kan man se en positiv korrelasjon mellom arbeidsledighet og organisasjonsgrad. Det vil si jo flere som er organisert i landet, desto høyere vil arbeidsledigheten for utenlandsfødte være. 
+
+Grunnen til det man kan observere i figuren kan blant annet være hvordan sammensetningen av medlemmene i fagforeningene er. Noen individer vil preferere høyere lønninger og lavere sysselsetning, mens andre individer vil preferere høyere sysselsetning og litt lavere lønninger. Som man så i forhandlingene tidligere i deloppgaven, kunne forhandlinger enten medføre høyere lønn og lavere sysselsetning, eller høyere sysselsetning og lavere lønninger. Hvordan utfallet ender, kommer ann på hvordan medlemmene av fagforeningens preferanser er.
+
+### Appendix
+
+ChatGPT (3.5, 25. september 2023 version): https://chat.openai.com/share/82215d58-cbc5-4e2f-a5fe-0e2b0cc0b643
+
